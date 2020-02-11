@@ -1,0 +1,52 @@
+<tr class="{{if this.selected "selected"}} {{if this.selectable "selectable"}}" ...attributes {{on "click" this.handleClick}}>
+  <td>
+    <span class="badge" style={{badgeStyle}}>
+      {{#if row.competitionId}}
+        {{row.competitionId}}
+      {{else}}
+        &nbsp;
+      {{/if}}
+    </span>
+  </td>
+  <td>
+    {{#if (is-undefined row.fix.time)}}
+      --:--:--
+    {{else}}
+      {{format-time (multiply row.fix.time 1000) format="hhmmss" timeZone="UTC"}}
+    {{/if}}
+  </td>
+  <td>
+    {{#if (is-undefined row.fix.alt-msl)}}
+      --
+    {{else}}
+      {{format-altitude row.fix.alt-msl}} <small>MSL</small>
+    {{/if}}
+  </td>
+  <td>
+    {{#if (is-undefined row.fix.alt-gnd)}}
+      --
+    {{else}}
+      {{format-altitude row.fix.alt-gnd}} <small>GND</small>
+    {{/if}}
+  </td>
+  <td>
+    {{#if (is-undefined row.fix.vario)}}
+      --
+    {{else}}
+      {{format-lift row.fix.vario}}
+    {{/if}}
+  </td>
+  <td>
+    {{#if (is-undefined row.fix.speed)}}
+      --
+    {{else}}
+      {{format-speed row.fix.speed}}
+    {{/if}}
+  </td>
+  <td>
+    {{#if row.removable}}
+      {{fa-icon "remove" click=(action "remove" bubbles=false)}}
+    {{/if}}
+  </td>
+
+</tr>
